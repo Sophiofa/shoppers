@@ -2162,15 +2162,10 @@ h2 {
 .popup-banner {
     position: sticky;
     bottom: 0;
-    background: #9747FF;  /* Purple color */
+    background: #9747FF;  /* Changed to purple color from logo */
     z-index: 2;
     border-radius: 0 0 12px 12px;
     margin-top: auto;
-    padding: 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
 }
 
 .popup-header {
