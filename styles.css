@@ -213,7 +213,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+    margin-bottom: 0;  /* Remove bottom margin from header */
+    position: relative;
+    z-index: 0;
 }
 
 .header-controls {
@@ -306,13 +308,16 @@ body {
 }
 
 .metric-value {
-    font-size: 24px;
-    font-weight: 500;
+    font-size: 36px;
+    font-weight: 600;
     color: #1a1f36;
+    line-height: 1.2;
+    gap: 8px;
 }
 
 .metric-change {
-    font-size: 14px;
+    font-size: 20px;
+    color: #00C48C;
 }
 
 .metric-change.positive {
@@ -581,8 +586,7 @@ canvas#scatterChart {
 .product-image {
     width: 40px;
     height: 40px;
-    object-fit: contain;
-    border: 1px solid #eaeaea;
+    object-fit: cover;
     border-radius: 4px;
 }
 
@@ -593,13 +597,13 @@ canvas#scatterChart {
 }
 
 .product-name {
-    color: #1a1f36;
     font-size: 14px;
+    color: #1a1f36;
 }
 
 .product-id {
-    color: #666;
     font-size: 12px;
+    color: #666;
 }
 
 .blurred {
@@ -1361,15 +1365,16 @@ h2 {
 }
 
 .metric-value {
-    font-size: 24px;
-    font-weight: 500;
+    font-size: 36px;
+    font-weight: 600;
     color: #1a1f36;
-    margin-bottom: 4px;
+    line-height: 1.2;
+    gap: 8px;
 }
 
 .metric-change {
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 20px;
+    color: #00C48C;
 }
 
 .metric-change.positive {
@@ -1717,7 +1722,7 @@ h2 {
 }
 
 .product-name {
-    font-size: 13px;
+    font-size: 14px;
     color: #1a1f36;
 }
 
@@ -2126,25 +2131,21 @@ h2 {
 
 .popup-content {
     position: relative;
-    background: white;
+    background: #f8f9fa;
     width: 90%;
     max-width: 1000px;
     margin: 40px auto;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    max-height: 90vh;
-    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    max-height: 90vh;  /* Add max height */
+    display: flex;     /* Add flex display */
     flex-direction: column;
-    overflow: hidden;  /* Add this to contain the scrolling content */
 }
 
-/* Update scrollable container */
 .popup-scroll {
-    flex: 1;
-    overflow-y: auto;
-    padding: 0;
-    position: relative;
-    scroll-behavior: smooth;  /* Add smooth scrolling */
+    flex: 1;          /* Allow content to fill available space */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 24px;    /* Add padding */
 }
 
 /* Keep header at the top */
@@ -2162,10 +2163,15 @@ h2 {
 .popup-banner {
     position: sticky;
     bottom: 0;
-    background: #9747FF;  /* Changed to purple color from logo */
+    background: #9747FF;  /* Purple color */
     z-index: 2;
     border-radius: 0 0 12px 12px;
     margin-top: auto;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
 }
 
 .popup-header {
@@ -2177,24 +2183,23 @@ h2 {
 .popup-header h2 {
     font-size: 24px;
     color: #1a1f36;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
-.popup-subtitle {
-    color: #666;
+.popup-header .date-range {
     font-size: 14px;
+    color: #666;
 }
 
 .close-popup {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 24px;
-    color: #666;
+    right: 24px;
+    top: 24px;
     background: none;
     border: none;
+    font-size: 24px;
+    color: #666;
     cursor: pointer;
-    padding: 4px;
 }
 
 /* Banner Styles */
@@ -2537,7 +2542,7 @@ document.addEventListener('click', function() {
 }
 
 .view-toggle {
-    padding: 6px 16px;
+    padding: 6px 12px;
     border: 1px solid #eaeaea;
     background: white;
     border-radius: 4px;
@@ -2866,32 +2871,58 @@ document.addEventListener('click', function() {
 
 .see-all-banner {
     padding: 12px;
-    background: #f0f4ff;  /* Lighter blue background */
-    border: 1px solid #0066FF;  /* Blue border */
+    background: #f0f4ff;
+    border: 1px solid #0066FF;
     border-radius: 4px;
-    margin-top: 16px;
+    margin-top: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    color: #0066FF;  /* Blue text */
+    color: #0066FF;
     font-size: 14px;
-    cursor: not-allowed;
-    opacity: 0.7;
-    transition: background-color 0.2s;
+    cursor: pointer;
 }
 
 .see-all-banner i {
     font-size: 12px;
-    color: #0066FF;  /* Blue icon */
+    color: #0066FF;
 }
 
 .revenue-summary {
     padding: 16px;
-    margin-bottom: 24px;
-    background: #f8f9fa;
-    border-radius: 4px;
+    margin: -24px auto 12px;  /* Increase negative margin to -24px */
+    background: white;
+    border-radius: 8px;
     border: 1px solid #eaeaea;
+    text-align: left;
+    max-width: 320px;
+    position: relative;
+    z-index: 1;
+}
+
+.category-text {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #1a1f36;
+}
+
+.metric-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.metric-details {
+    margin-bottom: 12px;
+}
+
+.metric-value {
+    font-size: 36px;
+    font-weight: 600;
+    color: #1a1f36;
+    line-height: 1.2;
+    gap: 8px;
 }
 
 .summary-text {
@@ -2921,13 +2952,13 @@ document.addEventListener('click', function() {
     justify-content: center;
     gap: 16px;
     margin-bottom: 16px;
-    padding-left: 0;  /* Remove left padding */
+    padding-left: 0;
 }
 
 .title-logo {
     height: 40px;
     width: auto;
-    order: -1;  /* Keep this to ensure logo appears before the title */
+    order: -1;
 }
 
 /* Update subtitle alignment */
@@ -2938,7 +2969,7 @@ document.addEventListener('click', function() {
 /* Ensure title is centered below logo */
 .hero-section .title-with-logo h1 {
     margin-bottom: 0;
-    text-align: center;  /* Ensure title is centered */
+    text-align: center;
 }
 
 .trial-message a {
@@ -2957,4 +2988,33 @@ document.addEventListener('click', function() {
     margin-left: 8px;
     font-size: 16px;
     color: white;
+}
+
+.blurred-column {
+    filter: blur(4px);
+    opacity: 0.7;
+    user-select: none;
+}
+
+.product-icon {
+    font-size: 24px;
+    color: #666;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.trial-banner-row td {
+    padding: 16px 0;
+}
+
+.trial-banner-row .see-all-banner {
+    margin: 0;
+}
+
+/* Remove any extra spacing from the table bottom */
+.products-table {
+    margin-bottom: 0;
 }
